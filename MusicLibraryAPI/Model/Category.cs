@@ -9,7 +9,7 @@ namespace MusicLibraryAPI.Model
     public class Category
     {
         [Key]
-        public Guid Id { get; set; }
+        public long Id { get; set; }
 
         [Required]
         public string CategoryName { get; set; }

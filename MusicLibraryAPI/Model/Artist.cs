@@ -9,12 +9,12 @@ namespace MusicLibraryAPI.Model
     public class Artist
     {
         [Key]
-        public Guid Id { get; set; }
+        public long Id { get; set; }
 
         [Required]
         [MaxLength(50)]
         public string ArtistName { get; set; }
 
-        public ICollection<Album> AlbumList { get; set; }
+        public List<Album> Albums { get; set; }
     }
 }

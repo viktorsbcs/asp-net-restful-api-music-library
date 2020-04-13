@@ -10,16 +10,23 @@ namespace MusicLibraryAPI.Model
     public class Album
     {
         [Key]
-        public Guid Id { get; set; }
-
-        [Required]
-        public Category AlbumCategory { get; set; }
-
-        [Required]
-        public ICollection<Track> TrackList { get; set; }
+        public long Id { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
         public DateTime ReleaseYear { get; set; }
+
+        [Required]
+        [DataType(DataType.Currency)]
+        public decimal Price { get; set; }
+
+        public long ArtistId { get; set; }
+        public Artist Artist { get; set; }
+
+        public long CategoryId { get; set; }
+        public Category Category { get; set; }
+
+
+        public List<Track> Tracks { get; set; }
     }
 }

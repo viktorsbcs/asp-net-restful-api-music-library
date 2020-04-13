@@ -22,30 +22,8 @@ namespace MusicLibraryAPI.DbContexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Category>().HasData(
-                new Category()
-                {
-                    Id = Guid.NewGuid(),
-                    CategoryName = "Rock"
-                },
-                new Category()
-                {
-                    Id = Guid.NewGuid(),
-                    CategoryName = "Metal"
-                },
-                new Category()
-                {
-                    Id = Guid.NewGuid(),
-                    CategoryName = "Pop"
-                },
+           
 
-                new Category()
-                {
-                    Id = Guid.NewGuid(),
-                    CategoryName = "Classic"
-                }
-
-           );
         }
     }
 }

@@ -10,7 +10,7 @@ namespace MusicLibraryAPI.Model
     public class Track
     {
         [Key]
-        public Guid Id { get; set; }
+        public long Id { get; set; }
         
         [Required]
         public string TrackTitle { get; set; }
@@ -18,5 +18,10 @@ namespace MusicLibraryAPI.Model
         [Required]
         [DataType(DataType.Duration)]
         public TimeSpan TrackDuration { get; set; }
+
+
+
+        public long AlbumId { get; set; }   
+        public Album Album { get; set; }
     }
 }

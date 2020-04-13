@@ -10,8 +10,8 @@ using MusicLibraryAPI.DbContexts;
 namespace MusicLibraryAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200411223755_init")]
-    partial class init
+    [Migration("20200413203648_Init2")]
+    partial class Init2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,33 +23,38 @@ namespace MusicLibraryAPI.Migrations
 
             modelBuilder.Entity("MusicLibraryAPI.Model.Album", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<Guid>("AlbumCategoryId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<long>("ArtistId")
+                        .HasColumnType("bigint");
 
-                    b.Property<Guid?>("ArtistId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<long>("CategoryId")
+                        .HasColumnType("bigint");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("ReleaseYear")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AlbumCategoryId");
-
                     b.HasIndex("ArtistId");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Albums");
                 });
 
             modelBuilder.Entity("MusicLibraryAPI.Model.Artist", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ArtistName")
                         .IsRequired()
@@ -63,9 +68,10 @@ namespace MusicLibraryAPI.Migrations
 
             modelBuilder.Entity("MusicLibraryAPI.Model.Category", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CategoryName")
                         .IsRequired()
@@ -74,38 +80,17 @@ namespace MusicLibraryAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("64343407-b591-49f9-beb5-c6bb380c1749"),
-                            CategoryName = "Rock"
-                        },
-                        new
-                        {
-                            Id = new Guid("022080c0-6632-4195-b30e-2a507b13a9f6"),
-                            CategoryName = "Metal"
-                        },
-                        new
-                        {
-                            Id = new Guid("c2d56961-4346-44af-9bb9-3602e5883726"),
-                            CategoryName = "Pop"
-                        },
-                        new
-                        {
-                            Id = new Guid("c34fa00c-2508-4865-a441-10b52c0fe567"),
-                            CategoryName = "Classic"
-                        });
                 });
 
             modelBuilder.Entity("MusicLibraryAPI.Model.Track", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<Guid?>("AlbumId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<long>("AlbumId")
+                        .HasColumnType("bigint");
 
                     b.Property<TimeSpan>("TrackDuration")
                         .HasColumnType("time");
@@ -123,22 +108,26 @@ namespace MusicLibraryAPI.Migrations
 
             modelBuilder.Entity("MusicLibraryAPI.Model.Album", b =>
                 {
-                    b.HasOne("MusicLibraryAPI.Model.Category", "AlbumCategory")
-                        .WithMany()
-                        .HasForeignKey("AlbumCategoryId")
+                    b.HasOne("MusicLibraryAPI.Model.Artist", "Artist")
+                        .WithMany("Albums")
+                        .HasForeignKey("ArtistId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MusicLibraryAPI.Model.Artist", null)
-                        .WithMany("AlbumList")
-                        .HasForeignKey("ArtistId");
+                    b.HasOne("MusicLibraryAPI.Model.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("MusicLibraryAPI.Model.Track", b =>
                 {
-                    b.HasOne("MusicLibraryAPI.Model.Album", null)
-                        .WithMany("TrackList")
-                        .HasForeignKey("AlbumId");
+                    b.HasOne("MusicLibraryAPI.Model.Album", "Album")
+                        .WithMany("Tracks")
+                        .HasForeignKey("AlbumId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

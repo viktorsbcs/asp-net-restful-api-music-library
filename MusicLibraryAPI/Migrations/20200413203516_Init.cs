@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MusicLibraryAPI.Migrations
 {
-    public partial class init : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,7 +11,8 @@ namespace MusicLibraryAPI.Migrations
                 name: "Artists",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     ArtistName = table.Column<string>(maxLength: 50, nullable: false)
                 },
                 constraints: table =>
@@ -23,7 +24,8 @@ namespace MusicLibraryAPI.Migrations
                 name: "Categories",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CategoryName = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
@@ -35,36 +37,39 @@ namespace MusicLibraryAPI.Migrations
                 name: "Albums",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
-                    AlbumCategoryId = table.Column<Guid>(nullable: false),
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     ReleaseYear = table.Column<DateTime>(nullable: false),
-                    ArtistId = table.Column<Guid>(nullable: true)
+                    Price = table.Column<decimal>(nullable: false),
+                    ArtistId = table.Column<long>(nullable: false),
+                    CategoryId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Albums", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Albums_Categories_AlbumCategoryId",
-                        column: x => x.AlbumCategoryId,
-                        principalTable: "Categories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_Albums_Artists_ArtistId",
                         column: x => x.ArtistId,
                         principalTable: "Artists",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Albums_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Tracks",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
+                    Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     TrackTitle = table.Column<string>(nullable: false),
                     TrackDuration = table.Column<TimeSpan>(nullable: false),
-                    AlbumId = table.Column<Guid>(nullable: true)
+                    AlbumId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -74,29 +79,18 @@ namespace MusicLibraryAPI.Migrations
                         column: x => x.AlbumId,
                         principalTable: "Albums",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.InsertData(
-                table: "Categories",
-                columns: new[] { "Id", "CategoryName" },
-                values: new object[,]
-                {
-                    { new Guid("64343407-b591-49f9-beb5-c6bb380c1749"), "Rock" },
-                    { new Guid("022080c0-6632-4195-b30e-2a507b13a9f6"), "Metal" },
-                    { new Guid("c2d56961-4346-44af-9bb9-3602e5883726"), "Pop" },
-                    { new Guid("c34fa00c-2508-4865-a441-10b52c0fe567"), "Classic" }
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Albums_AlbumCategoryId",
-                table: "Albums",
-                column: "AlbumCategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Albums_ArtistId",
                 table: "Albums",
                 column: "ArtistId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Albums_CategoryId",
+                table: "Albums",
+                column: "CategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tracks_AlbumId",
@@ -113,10 +107,10 @@ namespace MusicLibraryAPI.Migrations
                 name: "Albums");
 
             migrationBuilder.DropTable(
-                name: "Categories");
+                name: "Artists");
 
             migrationBuilder.DropTable(
-                name: "Artists");
+                name: "Categories");
         }
     }
 }

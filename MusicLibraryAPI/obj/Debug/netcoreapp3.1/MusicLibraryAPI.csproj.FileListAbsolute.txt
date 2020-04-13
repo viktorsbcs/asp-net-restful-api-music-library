@@ -47,3 +47,4 @@ C:\Users\Slash Hetfield\source\repos\MusicLibrary.API\MusicLibraryAPI\obj\Debug\
 C:\Users\Slash Hetfield\source\repos\MusicLibrary.API\MusicLibraryAPI\obj\Debug\netcoreapp3.1\MusicLibraryAPI.csproj.CopyComplete
 C:\Users\Slash Hetfield\source\repos\MusicLibrary.API\MusicLibraryAPI\obj\Debug\netcoreapp3.1\MusicLibraryAPI.dll
 C:\Users\Slash Hetfield\source\repos\MusicLibrary.API\MusicLibraryAPI\obj\Debug\netcoreapp3.1\MusicLibraryAPI.pdb
+C:\Users\Slash Hetfield\source\repos\MusicLibrary.API\MusicLibraryAPI\obj\Debug\netcoreapp3.1\MusicLibraryAPI.csprojAssemblyReference.cache
