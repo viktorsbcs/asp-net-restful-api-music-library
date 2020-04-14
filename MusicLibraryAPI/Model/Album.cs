@@ -12,6 +12,8 @@ namespace MusicLibraryAPI.Model
         [Key]
         public long Id { get; set; }
 
+        public string AlbumTitle { get; set; }
+
         [Required]
         [DataType(DataType.Date)]
         public DateTime ReleaseYear { get; set; }

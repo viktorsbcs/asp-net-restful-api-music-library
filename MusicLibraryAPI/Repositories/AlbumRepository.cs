@@ -1,5 +1,6 @@
 ﻿using MusicLibraryAPI.DbContexts;
 using MusicLibraryAPI.Model;
+using MusicLibraryAPI.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace MusicLibraryAPI.Repositories
 
         public IEnumerable<Album> GetAllAlbums => _appDbContext.Albums.ToList();
 
-        public void AddAlbum(Album album)
+        public void CreateAlbum(Album album)
         {
             //album.Id = 0  (to ensure that sql server will generate proper id for primary key
             _appDbContext.Add(album);

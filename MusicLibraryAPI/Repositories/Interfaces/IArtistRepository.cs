@@ -4,15 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MusicLibraryAPI.Repositories
+namespace MusicLibraryAPI.Repositories.Interfaces
 {
     public interface IArtistRepository
     {
         
         public IEnumerable<Artist> Artists { get; }
-        public Artist GetArtist(long Id);
-        public void AddArtist(Artist artist);
+        public Artist GetArtist(long id);
+        public void CreateArtist(Artist artist);
         public void UpdateArtist(Artist artist);
-        public void DeleteArtist(long Id);
+        public void DeleteArtist(long id);
     }
 }
