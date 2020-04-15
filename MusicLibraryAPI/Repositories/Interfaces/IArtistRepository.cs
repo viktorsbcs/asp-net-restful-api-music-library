@@ -9,7 +9,7 @@ namespace MusicLibraryAPI.Repositories.Interfaces
     public interface IArtistRepository
     {
         
-        public IEnumerable<Artist> Artists { get; }
+        public IEnumerable<Artist> GetAllArtists { get; }
         public Artist GetArtist(long id);
         public void CreateArtist(Artist artist);
         public void UpdateArtist(Artist artist);

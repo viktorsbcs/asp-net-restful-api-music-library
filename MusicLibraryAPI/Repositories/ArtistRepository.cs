@@ -1,4 +1,5 @@
-﻿using MusicLibraryAPI.DbContexts;
+﻿using Microsoft.EntityFrameworkCore;
+using MusicLibraryAPI.DbContexts;
 using MusicLibraryAPI.Model;
 using MusicLibraryAPI.Repositories.Interfaces;
 using System;
@@ -17,7 +18,7 @@ namespace MusicLibraryAPI.Repositories
             this._appDbContext = appDbContext;
         }
 
-        public IEnumerable<Artist> Artists => throw new NotImplementedException();
+        public IEnumerable<Artist> GetAllArtists => _appDbContext.Artists.Include(x => x.Albums).ToList();
 
         public void CreateArtist(Artist artist)
         {
@@ -34,7 +35,17 @@ namespace MusicLibraryAPI.Repositories
 
         public Artist GetArtist(long id)
         {
-            return _appDbContext.Artists.Find(id);
+            try
+            {
+                var artist = _appDbContext.Artists.Include(x => x.Albums).First(x => x.Id == id);
+                return artist;
+            }
+            catch
+            {
+                return null;
+            }
+
+
         }
 
         public void UpdateArtist(Artist artist)

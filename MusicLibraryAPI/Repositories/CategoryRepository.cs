@@ -16,7 +16,7 @@ namespace MusicLibraryAPI.Repositories
         {
             this._appDbContext = appDbContext;
         }
-        public IEnumerable<Category> Categories => throw new NotImplementedException();
+        public IEnumerable<Category> GetAllCategories => _appDbContext.Categories.ToList();
 
         public void CreateCategory(Category category)
         {

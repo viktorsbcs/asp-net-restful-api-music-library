@@ -8,6 +8,7 @@ namespace MusicLibraryAPI.Model
 {
     public class Artist
     {
+       
         [Key]
         public long Id { get; set; }
 

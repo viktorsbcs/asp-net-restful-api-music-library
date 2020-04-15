@@ -8,7 +8,7 @@ namespace MusicLibraryAPI.Repositories.Interfaces
 {
     public interface ITrackRepository
     {
-        public IEnumerable<Track> Tracks { get; }
+        public IEnumerable<Track> GetAllTracks { get; }
         public Track GetTrack(long id);
         public void CreateTrack(Track track);
         public void UpdateTrack(Track track);

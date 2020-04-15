@@ -8,7 +8,7 @@ namespace MusicLibraryAPI.Repositories.Interfaces
 {
     public interface ICategoryRepository
     {
-        public IEnumerable<Category> Categories { get; }
+        public IEnumerable<Category> GetAllCategories { get; }
         public Category GetCategory(long id);
         public void CreateCategory(Category category);
         public void UpdateCategory(Category category);

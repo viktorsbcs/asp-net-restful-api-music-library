@@ -16,7 +16,7 @@ namespace MusicLibraryAPI.Repositories
         {
             this._appDbContext = appDbContext;
         }
-        public IEnumerable<Track> Tracks => throw new NotImplementedException();
+        public IEnumerable<Track> GetAllTracks => _appDbContext.Tracks.ToList();
 
         public void CreateTrack(Track track)
         {
