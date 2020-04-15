@@ -40,7 +40,7 @@ namespace MusicLibraryAPI.Repositories
                 var artist = _appDbContext.Artists.Include(x => x.Albums).First(x => x.Id == id);
                 return artist;
             }
-            catch
+            catch (InvalidOperationException)
             {
                 return null;
             }

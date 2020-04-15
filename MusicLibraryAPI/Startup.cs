@@ -36,7 +36,7 @@ namespace MusicLibraryAPI
 
             //Adding NewtonsoftJson to fix nested 32 json object error, adding xml output functionality
             services.AddControllers(setupAction =>  setupAction.ReturnHttpNotAcceptable = true)
-                .AddXmlDataContractSerializerFormatters()
+                //.AddXmlDataContractSerializerFormatters()
                 .AddNewtonsoftJson(options =>
                   options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 

@@ -1,4 +1,5 @@
-﻿using MusicLibraryAPI.DbContexts;
+﻿using Microsoft.EntityFrameworkCore;
+using MusicLibraryAPI.DbContexts;
 using MusicLibraryAPI.Model;
 using MusicLibraryAPI.Repositories.Interfaces;
 using System;
@@ -18,7 +19,7 @@ namespace MusicLibraryAPI.Repositories
         }
 
 
-        public IEnumerable<Album> GetAllAlbums => _appDbContext.Albums.ToList();
+        public IEnumerable<Album> GetAllAlbums => _appDbContext.Albums.Include(x => x.Tracks).Include(x => x.Category).Include(x => x.Artist).ToList();
 
         public void CreateAlbum(Album album)
         {
@@ -36,7 +37,15 @@ namespace MusicLibraryAPI.Repositories
 
         public Album GetAlbum(long id)
         {
-            return _appDbContext.Albums.Find(id);
+            try
+            {
+                return _appDbContext.Albums.Include(x => x.Tracks).Include(x => x.Category).Include(x => x.Artist).First(x => x.Id == id);
+
+            }
+            catch (InvalidOperationException)
+            {
+                return null;
+            }
         }
 
         public void UpdateAlbum(Album album)

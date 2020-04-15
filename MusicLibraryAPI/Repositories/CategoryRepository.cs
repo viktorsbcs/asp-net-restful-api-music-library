@@ -33,7 +33,16 @@ namespace MusicLibraryAPI.Repositories
 
         public Category GetCategory(long id)
         {
-            return _appDbContext.Categories.Find(id);
+            try
+            {
+
+                return _appDbContext.Categories.Find(id);
+
+            }
+            catch (InvalidOperationException)
+            {
+                return null;
+            }
         }
 
         public void UpdateCategory(Category category)

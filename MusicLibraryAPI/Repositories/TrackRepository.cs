@@ -1,4 +1,5 @@
-﻿using MusicLibraryAPI.DbContexts;
+﻿using Microsoft.EntityFrameworkCore;
+using MusicLibraryAPI.DbContexts;
 using MusicLibraryAPI.Model;
 using MusicLibraryAPI.Repositories.Interfaces;
 using System;
@@ -16,7 +17,7 @@ namespace MusicLibraryAPI.Repositories
         {
             this._appDbContext = appDbContext;
         }
-        public IEnumerable<Track> GetAllTracks => _appDbContext.Tracks.ToList();
+        public IEnumerable<Track> GetAllTracks => _appDbContext.Tracks.Include(x => x.Album).ToList();
 
         public void CreateTrack(Track track)
         {
@@ -33,7 +34,15 @@ namespace MusicLibraryAPI.Repositories
 
         public Track GetTrack(long id)
         {
-            return _appDbContext.Tracks.Find(id);
+            try
+            {
+                return _appDbContext.Tracks.Include(x => x.Album).First(x => x.Id == id);
+            }
+            catch (InvalidOperationException)
+            {
+                return null;
+            }
+
         }
 
         public void UpdateTrack(Track track)
