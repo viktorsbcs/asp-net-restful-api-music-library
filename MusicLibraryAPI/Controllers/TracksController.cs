@@ -46,5 +46,12 @@ namespace MusicLibraryAPI.Controllers
 
             return Ok(_mapper.Map<IEnumerable<TrackDTO>>(tracks));
         }
+
+        //[HttpGet]
+        public ActionResult<IEnumerable<TrackDTO>> GetTracksByAlbumTitle([FromQuery] string albumTitle)
+        {
+            var tracks = _trackRepository.GetTracksByAlbumTitle(albumTitle);
+            return Ok(_mapper.Map<IEnumerable<TrackDTO>>(tracks));
+        }
     }
 }

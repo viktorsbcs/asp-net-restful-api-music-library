@@ -16,7 +16,11 @@ namespace MusicLibraryAPI.Profiles
                 .ForMember(
                     dest => dest.ArtistId, 
                     act => act.MapFrom(src => src.Album.ArtistId)
-                 );
+                 )
+                .ForMember(
+                    dest => dest.AlbumTitle,
+                    act => act.MapFrom(src => src.Album.AlbumTitle)
+                );
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using MusicLibraryAPI.Model;
 using MusicLibraryAPI.Model.DTO;
 using MusicLibraryAPI.Repositories.Interfaces;
 
@@ -55,6 +56,19 @@ namespace MusicLibraryAPI.Controllers
 
             var artistDto = _mapper.Map<ArtistDTO>(artist);
             return Ok(artistDto);
+        }
+
+        [HttpPost]
+        public ActionResult CreateArtist(ArtistCreateDTO artistDto)
+        {
+            if (artistDto == null)
+            {
+                throw new NotImplementedException("Artist not found");
+            } 
+            var artist = _mapper.Map<Artist>(artistDto);
+            _artistRepository.CreateArtist(artist);
+
+            return Ok(artist);
         }
     }
 }

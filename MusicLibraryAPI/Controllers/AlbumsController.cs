@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using MusicLibraryAPI.Model;
 using MusicLibraryAPI.Model.DTO;
 using MusicLibraryAPI.Repositories.Interfaces;
 
@@ -22,8 +23,9 @@ namespace MusicLibraryAPI.Controllers
             this._mapper = mapper;
         }
 
-        [HttpGet("{id}")]
-        public ActionResult GetAlbum(long id)
+        [HttpGet]
+        [Route("{id}")]
+        public ActionResult<AlbumDTO> GetAlbum(long id)
         {
             var album = _albumRepository.GetAlbum(id);
 
@@ -45,6 +47,22 @@ namespace MusicLibraryAPI.Controllers
             }
 
             return Ok(_mapper.Map<IEnumerable<AlbumDTO>>(albums));
+        }
+
+
+        [HttpPost]
+        public ActionResult CreateAlbum(AlbumCreateDTO albumDto)
+        {
+
+            var album = _mapper.Map<Album>(albumDto);
+
+            if(album == null)
+            {
+                return NotFound();
+            }
+
+            _albumRepository.CreateAlbum(album);
+            return Ok(album);
         }
         
 

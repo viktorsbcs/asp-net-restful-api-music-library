@@ -46,7 +46,6 @@ C:\Users\Slash Hetfield\source\repos\MusicLibrary.API\MusicLibraryAPI\obj\Debug\
 C:\Users\Slash Hetfield\source\repos\MusicLibrary.API\MusicLibraryAPI\obj\Debug\netcoreapp3.1\MusicLibraryAPI.csproj.CopyComplete
 C:\Users\Slash Hetfield\source\repos\MusicLibrary.API\MusicLibraryAPI\obj\Debug\netcoreapp3.1\MusicLibraryAPI.dll
 C:\Users\Slash Hetfield\source\repos\MusicLibrary.API\MusicLibraryAPI\obj\Debug\netcoreapp3.1\MusicLibraryAPI.pdb
-C:\Users\Slash Hetfield\source\repos\MusicLibrary.API\MusicLibraryAPI\obj\Debug\netcoreapp3.1\MusicLibraryAPI.csprojAssemblyReference.cache
 C:\Users\Slash Hetfield\source\repos\MusicLibrary.API\MusicLibraryAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Razor.Language.dll
 C:\Users\Slash Hetfield\source\repos\MusicLibrary.API\MusicLibraryAPI\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.dll
 C:\Users\Slash Hetfield\source\repos\MusicLibrary.API\MusicLibraryAPI\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.CSharp.dll
@@ -126,3 +125,4 @@ C:\Users\Slash Hetfield\source\repos\MusicLibrary.API\MusicLibraryAPI\bin\Debug\
 C:\Users\Slash Hetfield\source\repos\MusicLibrary.API\MusicLibraryAPI\bin\Debug\netcoreapp3.1\AutoMapper.dll
 C:\Users\Slash Hetfield\source\repos\MusicLibrary.API\MusicLibraryAPI\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\Slash Hetfield\source\repos\MusicLibrary.API\MusicLibraryAPI\obj\Debug\netcoreapp3.1\MusicLibraryAPI.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Slash Hetfield\source\repos\MusicLibrary.API\MusicLibraryAPI\obj\Debug\netcoreapp3.1\MusicLibraryAPI.csprojAssemblyReference.cache

@@ -45,6 +45,12 @@ namespace MusicLibraryAPI.Repositories
 
         }
 
+        public IEnumerable<Track> GetTracksByAlbumTitle(string albumTitle)
+        {
+            var tracks = _appDbContext.Tracks.AsQueryable().Include(x=>x.Album).Where(x => x.Album.AlbumTitle == albumTitle);
+            return tracks.ToList();
+        }
+
         public void UpdateTrack(Track track)
         {
             _appDbContext.Update(track);

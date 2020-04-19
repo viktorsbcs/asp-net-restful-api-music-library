@@ -13,6 +13,7 @@ namespace MusicLibraryAPI.Profiles
         public ArtistProfile()
         {
             CreateMap<Artist, ArtistDTO>();
+            CreateMap<ArtistCreateDTO, Artist>();
         }
     }
 }

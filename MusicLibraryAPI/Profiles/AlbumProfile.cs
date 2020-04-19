@@ -17,7 +17,9 @@ namespace MusicLibraryAPI.Profiles
                     dest => dest.Tracks,
                     act => act.MapFrom(src=>src.Tracks.Select(x=> new TrackMinimalDTO() { Id = x.Id, TrackTitle = x.TrackTitle, TrackDuration = x.TrackDuration }))
                 );
-            
+
+            CreateMap<AlbumCreateDTO, Album>();
+                
         }
     }
 }

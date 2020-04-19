@@ -16,6 +16,8 @@ namespace MusicLibraryAPI.Model.DTO
         public long AlbumId { get; set; }
 
         public long ArtistId { get; set; }
+
+        public string AlbumTitle { get; set; }
     }
 
     

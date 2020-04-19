@@ -13,5 +13,6 @@ namespace MusicLibraryAPI.Repositories.Interfaces
         public void CreateTrack(Track track);
         public void UpdateTrack(Track track);
         public void DeleteTrack(long id);
+        public IEnumerable<Track> GetTracksByAlbumTitle(string albumTitle);
     }
 }

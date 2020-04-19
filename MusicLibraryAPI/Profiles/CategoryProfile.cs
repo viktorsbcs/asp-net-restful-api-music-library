@@ -13,6 +13,7 @@ namespace MusicLibraryAPI.Profiles
         public CategoryProfile()
         {
             CreateMap<Category, CategoryDTO>();
+            CreateMap<CategoryCreateDTO, Category>();
         }
     }
 }
